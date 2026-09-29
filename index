@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Laman Aman EcoVerse - PDF Viewer</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #f5fbf6);
+        color: #23452d;
+    }
+
+    .viewer-container {
+        width: 100%;
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    /* HEADER */
+    .header {
+        background: linear-gradient(135deg, #1b5e20, #388e3c);
+        color: white;
+        padding: 22px 25px;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 8px 25px rgba(27, 94, 32, 0.18);
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .leaf {
+        font-size: 42px;
+    }
+
+    .title {
+        margin: 0;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .subtitle {
+        margin: 6px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+
+    /* PDF AREA */
+    .pdf-card {
+        background: white;
+        padding: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .pdf-frame {
+        width: 100%;
+        height: 650px;
+        border: none;
+        display: block;
+        background: #f1f1f1;
+    }
+
+    /* CONTROL BAR */
+    .control-bar {
+        background: #ffffff;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    }
+
+    .btn {
+        border: none;
+        padding: 11px 18px;
+        border-radius: 30px;
+        background: #2e7d32;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.25s;
+    }
+
+    .btn:hover {
+        background: #1b5e20;
+        transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .btn.secondary:hover {
+        background: #c8e6c9;
+    }
+
+    /* FOOTER */
+    .footer {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 12px;
+        color: #5f7d64;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+
+        .viewer-container {
+            padding: 8px;
+        }
+
+        .header {
+            padding: 17px;
+        }
+
+        .title {
+            font-size: 20px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+        }
+
+        .leaf {
+            font-size: 32px;
+        }
+
+        .pdf-frame {
+            height: 500px;
+        }
+
+        .btn {
+            padding: 9px 14px;
+            font-size: 13px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="viewer-container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="header-content">
+
+            <div class="leaf">🌿</div>
+
+            <div>
+                <h1 class="title">
+                    Laman Aman EcoVerse
+                </h1>
+
+                <p class="subtitle">
+                    Dokumen dan laporan projek kelestarian alam
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PDF -->
+    <div class="pdf-card">
+
+        <iframe
+            id="pdfViewer"
+            class="pdf-frame"
+            src="https://drive.google.com/file/d/1n6ISspKobVDgCnq5MCuzcgkt9JgnBLIg/preview"
+            allow="autoplay">
+        </iframe>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+    <div class="control-bar">
+
+        <a
+            id="openPDF"
+            class="btn"
+            href="https://drive.google.com/file/d/1n6ISspKobVDgCnq5MCuzcgkt9JgnBLIg/view"
+            target="_blank">
+            📖 Buka PDF
+        </a>
+
+        <a
+            id="downloadPDF"
+            class="btn secondary"
+            href="https://drive.google.com/uc?export=download&id=1n6ISspKobVDgCnq5MCuzcgkt9JgnBLIg"
+            target="_blank">
+            ⬇️ Muat Turun
+        </a>
+
+        <button
+            class="btn secondary"
+            onclick="fullscreenPDF()">
+            ⛶ Paparan Penuh
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+        🌱 Laman Aman EcoVerse · SK Parit Haji Aman
+    </div>
+
+</div>
+
+
+<script>
+
+function fullscreenPDF() {
+
+    const pdf = document.getElementById("pdfViewer");
+
+    if (pdf.requestFullscreen) {
+
+        pdf.requestFullscreen();
+
+    } else if (pdf.webkitRequestFullscreen) {
+
+        pdf.webkitRequestFullscreen();
+
+    } else {
+
+        window.open(pdf.src, "_blank");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
